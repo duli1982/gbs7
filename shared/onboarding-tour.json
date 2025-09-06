@@ -1,0 +1,107 @@
+{
+  "tour": {
+    "id": "homepage-quickstart",
+    "title": "Welcome to Randstad GBS Learning Hub!",
+    "description": "Let's take a quick 30-second tour to get you started",
+    "estimatedTime": "30 seconds",
+    "steps": [
+      {
+        "id": "step-1",
+        "title": "Welcome! 👋",
+        "content": "Welcome to your AI learning hub! This is your central portal for AI training programs, tools, and resources.",
+        "target": "header",
+        "position": "bottom",
+        "showSkip": true,
+        "action": {
+          "type": "highlight",
+          "element": ".container"
+        }
+      },
+      {
+        "id": "step-2", 
+        "title": "Global Search 🔍",
+        "content": "Use this powerful search to find any content across all modules. Try typing 'prompts' or 'Boolean search'!",
+        "target": "#global-search",
+        "position": "bottom",
+        "showSkip": true,
+        "action": {
+          "type": "focus",
+          "element": "#global-search"
+        }
+      },
+      {
+        "id": "step-3",
+        "title": "What's New 🆕", 
+        "content": "Stay up-to-date with the latest content, features, and success stories. Check here regularly for fresh content!",
+        "target": "#whats-new-section h2",
+        "position": "bottom",
+        "showSkip": true,
+        "action": {
+          "type": "pulse",
+          "element": "#whats-new-section"
+        }
+      },
+      {
+        "id": "step-4",
+        "title": "Training Modules 📚",
+        "content": "Explore our comprehensive training programs. Start with the RPO AI Acceleration Program for core skills!",
+        "target": "#modules-grid",
+        "position": "top",
+        "showSkip": true,
+        "action": {
+          "type": "highlight",
+          "element": ".hub-card"
+        }
+      },
+      {
+        "id": "step-5",
+        "title": "Quick Tips 💡",
+        "content": "• Use Ctrl+K for quick search\n• Bookmark your favorite modules\n• Check What's New weekly\n• Join our community discussions",
+        "target": "body",
+        "position": "center",
+        "showSkip": false,
+        "action": {
+          "type": "celebrate"
+        }
+      },
+      {
+        "id": "step-6",
+        "title": "You're All Set! 🚀",
+        "content": "Ready to start your AI journey? Choose a module below or use the search to find specific topics. Welcome aboard!",
+        "target": "#modules-grid",
+        "position": "top",
+        "showSkip": false,
+        "action": {
+          "type": "highlight",
+          "element": "#modules-grid .hub-card:first-child"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "autoStart": false,
+    "showOnFirstVisit": true,
+    "canRestart": true,
+    "pauseOnBackground": true,
+    "trackProgress": true,
+    "shortcuts": {
+      "next": "ArrowRight",
+      "previous": "ArrowLeft", 
+      "skip": "Escape"
+    }
+  },
+  "triggers": [
+    {
+      "type": "first-visit",
+      "delay": 1000
+    },
+    {
+      "type": "manual",
+      "selector": "#start-tour-btn"
+    },
+    {
+      "type": "help-menu",
+      "text": "Take Tour"
+    }
+  ]
+}

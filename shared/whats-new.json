@@ -1,0 +1,94 @@
+{
+  "updates": [
+    {
+      "id": "update-001",
+      "type": "new-content",
+      "title": "Advanced Boolean Search Techniques",
+      "description": "New training module covering complex Boolean search strategies for hard-to-fill positions",
+      "category": "Training Content",
+      "date": "2025-01-05",
+      "link": "/rpo-training/sessions/2-1.html",
+      "badge": "NEW",
+      "icon": "🎯"
+    },
+    {
+      "id": "update-002",
+      "type": "feature",
+      "title": "AI Gem Creator Tool",
+      "description": "Transform any prompt into a structured, reusable Gemini Gem with our new interactive tool",
+      "category": "Feature Update",
+      "date": "2025-01-03",
+      "link": "/gbs-prompts/",
+      "badge": "FEATURE",
+      "icon": "💎"
+    },
+    {
+      "id": "update-003",
+      "type": "success-story",
+      "title": "75% Efficiency Boost in Candidate Sourcing",
+      "description": "See how the London team achieved remarkable results using AI-powered Boolean search",
+      "category": "Success Story",
+      "date": "2025-01-01",
+      "link": "/use-cases/#sourcing-success",
+      "badge": "SUCCESS",
+      "icon": "📈"
+    },
+    {
+      "id": "update-004",
+      "type": "update",
+      "title": "Enhanced Daily Focus Cards",
+      "description": "New progress tracking and personalized recommendations added to Daily Sourcing Focus",
+      "category": "Content Update",
+      "date": "2024-12-28",
+      "link": "/daily-focus/",
+      "badge": "UPDATED",
+      "icon": "⚡"
+    },
+    {
+      "id": "update-005",
+      "type": "new-content",
+      "title": "Leadership Workshop: AI Strategy",
+      "description": "New interactive workshop for GBS leaders on implementing AI strategy at scale",
+      "category": "Training Content",
+      "date": "2024-12-25",
+      "link": "/gbs-ai-workshop/",
+      "badge": "NEW",
+      "icon": "🎓"
+    },
+    {
+      "id": "update-006",
+      "type": "feature",
+      "title": "Global Search Enhancement",
+      "description": "Improved search with better filtering, suggestions, and cross-module content discovery",
+      "category": "Feature Update", 
+      "date": "2024-12-22",
+      "link": "#search",
+      "badge": "FEATURE",
+      "icon": "🔍"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "announcement-001",
+      "type": "upcoming",
+      "title": "AI Champions Certification Program",
+      "description": "Official certification program launching next month. Register your interest now!",
+      "date": "2025-02-01",
+      "priority": "high",
+      "actionText": "Learn More",
+      "actionLink": "/ai-champions-program/",
+      "icon": "🏆"
+    },
+    {
+      "id": "announcement-002", 
+      "type": "event",
+      "title": "Monthly AI Success Showcase",
+      "description": "Join us January 15th for team presentations on AI implementation wins",
+      "date": "2025-01-15",
+      "priority": "medium",
+      "actionText": "Register",
+      "actionLink": "/events/ai-showcase-jan/",
+      "icon": "🎤"
+    }
+  ]
+}

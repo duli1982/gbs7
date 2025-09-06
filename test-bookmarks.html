@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarking System Test - GBS Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="shared/hub-button.css">
+    <link rel="stylesheet" href="shared/mobile-menu.css">
+    <link rel="stylesheet" href="shared/bookmarks.css">
+    <style>
+        /* CSS Variables for Testing */
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f3f4f6;
+            --bg-accent: #e8f0fe;
+            --bg-hover: #f8fafc;
+            
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --text-tertiary: #6b7280;
+            --text-muted: #9ca3af;
+            
+            --border-primary: #e5e7eb;
+            --border-secondary: #d1d5db;
+            --border-accent: #dadce0;
+            
+            --accent-primary: #4A90E2;
+            --accent-secondary: #1967d2;
+            --accent-hover: #357abd;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .test-content {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .prompt-box {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 16px 0;
+        }
+        
+        .module-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .content-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 24px 0;
+            position: relative;
+        }
+        
+        .use-case {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #b3e5fc;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            position: relative;
+        }
+        
+        .test-section {
+            margin: 32px 0;
+            padding: 24px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+        
+        .test-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 4px;
+        }
+        
+        .test-indicator.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .test-indicator.error {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .test-indicator.pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Test Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900">Bookmarking System Test</h1>
+            <div class="flex gap-4">
+                <button id="open-bookmarks-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    📚 My Bookmarks
+                </button>
+                <a href="index.html" class="hub-button">Back To Hub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Test Instructions -->
+            <div class="test-section">
+                <h2 class="text-2xl font-bold mb-4">🧪 Bookmarking System Test</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">How to Test:</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                            <li>Look for bookmark buttons (📖) on content items below</li>
+                            <li>Click bookmark buttons to add/remove bookmarks</li>
+                            <li>Press <kbd class="px-2 py-1 bg-gray-200 rounded">Ctrl+B</kbd> to open bookmarks modal</li>
+                            <li>Use search and filter in bookmarks modal</li>
+                            <li>Test export/import functionality</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Test Status:</h3>
+                        <div id="test-status" class="space-y-2">
+                            <div class="test-indicator pending">⏳ System Loading</div>
+                            <div class="test-indicator pending">⏳ Buttons Injection</div>
+                            <div class="test-indicator pending">⏳ Modal Functionality</div>
+                            <div class="test-indicator pending">⏳ Storage Test</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Content: Lessons -->
+            <div class="test-section">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6">📚 Sample Lessons</h2>
+                
+                <div class="content-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Session 1.1: Advanced Prompt Engineering</h2>
+                    <p class="text-lg text-gray-600 mb-6">Learn the CREATE framework for building effective AI prompts that get consistent, high-quality results.</p>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Key Concepts:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Context setting for optimal AI responses</li>
+                        <li>Role definition and persona development</li>
+                        <li>Example-driven prompt construction</li>
+                        <li>Output formatting and constraints</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Session 2.1: AI-Powered Resume Analysis</h2>
+                    <p class="text-lg text-gray-600 mb-6">Discover how to use AI to quickly analyze and score candidate resumes for better hiring decisions.</p>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Learning Objectives:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Automated resume screening techniques</li>
+                        <li>Skills gap identification</li>
+                        <li>Bias reduction in candidate evaluation</li>
+                        <li>Integration with ATS systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Test Content: Prompts -->
+            <div class="test-section">
+                <h2 class="text-2xl font-bold text-green-600 mb-6">💡 Sample Prompts</h2>
+                
+                <h3 class="text-xl font-semibold mb-4">Job Description Creator</h3>
+                <div class="prompt-box">
+You are an expert RPO recruiter and recruitment marketer.
+
+Write a compelling job description for a [ROLE_TITLE] position at [COMPANY_TYPE].
+
+Requirements:
+- Include clear responsibilities and requirements
+- Use engaging, benefit-focused language
+- Specify required experience level
+- Add compensation range if provided
+- Keep length around 300-400 words
+- Avoid buzzwords and jargon
+
+Output format:
+- Role Summary
+- Key Responsibilities  
+- Required Skills
+- Nice-to-Have Skills
+- Compensation & Benefits
+                </div>
+
+                <h3 class="text-xl font-semibold mb-4">Boolean Search Generator</h3>
+                <div class="prompt-box">
+Create advanced Boolean search strings for finding [TARGET_ROLE] candidates.
+
+Consider:
+- Alternative job titles and synonyms
+- Required skills and technologies
+- Experience levels
+- Location preferences
+- Company size/industry focus
+
+Provide 3 different search strategies:
+1. Broad discovery search
+2. Targeted skills-based search  
+3. Competitive intelligence search
+
+Format each as ready-to-use LinkedIn/Google search strings.
+                </div>
+
+                <h3 class="text-xl font-semibold mb-4">Interview Question Framework</h3>
+                <div class="prompt-box">
+Generate behavioral interview questions for a [ROLE_LEVEL] [JOB_TITLE] position.
+
+Create questions that assess:
+- Technical competency
+- Leadership potential
+- Cultural fit
+- Problem-solving approach
+- Communication skills
+
+For each question, provide:
+- The question text
+- What you're evaluating
+- Sample strong vs. weak responses
+- Follow-up questions
+
+Generate 8-10 questions total across different competency areas.
+                </div>
+            </div>
+
+            <!-- Test Content: Modules -->
+            <div class="test-section">
+                <h2 class="text-2xl font-bold text-orange-600 mb-6">🎯 Sample Training Modules</h2>
+                
+                <div class="module-card">
+                    <h3 class="text-2xl font-bold mb-2">Module 1: AI Foundations for Recruiters</h3>
+                    <p class="text-gray-600 mb-4">Master the fundamental concepts of artificial intelligence and how they apply to modern recruitment practices.</p>
+                    <div class="text-sm text-orange-600 font-semibold">BEGINNER • 2 HOURS</div>
+                </div>
+
+                <div class="module-card">
+                    <h3 class="text-2xl font-bold mb-2">Module 2: Advanced Sourcing with AI</h3>
+                    <p class="text-gray-600 mb-4">Learn cutting-edge techniques for using AI to identify, engage, and qualify top talent across multiple platforms.</p>
+                    <div class="text-sm text-orange-600 font-semibold">INTERMEDIATE • 3 HOURS</div>
+                </div>
+
+                <div class="module-card">
+                    <h3 class="text-2xl font-bold mb-2">Module 3: AI-Driven Interview Process</h3>
+                    <p class="text-gray-600 mb-4">Revolutionize your interview process with AI-powered question generation, candidate assessment, and feedback analysis.</p>
+                    <div class="text-sm text-orange-600 font-semibold">ADVANCED • 4 HOURS</div>
+                </div>
+            </div>
+
+            <!-- Test Content: Use Cases -->
+            <div class="test-section">
+                <h2 class="text-2xl font-bold text-purple-600 mb-6">📈 Sample Use Cases</h2>
+                
+                <div class="use-case">
+                    <h3 class="text-xl font-bold mb-3">Case Study: Tech Startup Scaling</h3>
+                    <p class="text-gray-700 mb-4">How a 50-person tech startup used AI to streamline their hiring process and reduce time-to-hire by 60% while improving candidate quality scores by 40%.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white bg-opacity-70 rounded-full text-sm font-medium">Time Savings</span>
+                        <span class="px-3 py-1 bg-white bg-opacity-70 rounded-full text-sm font-medium">Quality Improvement</span>
+                        <span class="px-3 py-1 bg-white bg-opacity-70 rounded-full text-sm font-medium">Process Automation</span>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3 class="text-xl font-bold mb-3">Case Study: Enterprise RPO Transformation</h3>
+                    <p class="text-gray-700 mb-4">A Fortune 500 company's journey to implement AI across their global recruitment operations, resulting in $2M annual cost savings and 45% faster placement rates.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white bg-opacity-70 rounded-full text-sm font-medium">Cost Reduction</span>
+                        <span class="px-3 py-1 bg-white bg-opacity-70 rounded-full text-sm font-medium">Global Scale</span>
+                        <span class="px-3 py-1 bg-white bg-opacity-70 rounded-full text-sm font-medium">ROI Measurement</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Test Controls -->
+            <div class="test-section">
+                <h2 class="text-2xl font-bold mb-4">🎮 Interactive Tests</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <button id="test-bookmark-add" class="w-full py-3 px-6 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Add Test Bookmark
+                    </button>
+                    <button id="test-bookmark-clear" class="w-full py-3 px-6 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        Clear All Bookmarks
+                    </button>
+                    <button id="test-export" class="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        Export Bookmarks
+                    </button>
+                    <button id="test-stats" class="w-full py-3 px-6 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        Show Statistics
+                    </button>
+                </div>
+                
+                <div id="test-output" class="mt-4 p-4 bg-gray-100 rounded-lg hidden">
+                    <h4 class="font-semibold mb-2">Test Output:</h4>
+                    <pre id="test-output-content" class="text-sm text-gray-700 overflow-auto max-h-40"></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="shared/mobile-menu.js"></script>
+    <script src="shared/bookmarks.js"></script>
+    <script src="shared/bookmarks-modal.js"></script>
+    <script>
+        // Bookmarking System Test Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const testOutput = document.getElementById('test-output');
+            const testOutputContent = document.getElementById('test-output-content');
+            const testStatus = document.getElementById('test-status');
+            
+            let systemTests = {
+                loading: false,
+                injection: false,
+                modal: false,
+                storage: false
+            };
+            
+            function updateTestStatus(test, success) {
+                systemTests[test] = success;
+                renderTestStatus();
+            }
+            
+            function renderTestStatus() {
+                const indicators = testStatus.children;
+                const tests = Object.keys(systemTests);
+                
+                tests.forEach((test, index) => {
+                    const indicator = indicators[index];
+                    const success = systemTests[test];
+                    
+                    if (success) {
+                        indicator.className = 'test-indicator success';
+                        indicator.textContent = `✅ ${getTestLabel(test)}`;
+                    } else {
+                        indicator.className = 'test-indicator error';
+                        indicator.textContent = `❌ ${getTestLabel(test)}`;
+                    }
+                });
+            }
+            
+            function getTestLabel(test) {
+                const labels = {
+                    loading: 'System Loading',
+                    injection: 'Buttons Injection',
+                    modal: 'Modal Functionality',
+                    storage: 'Storage Test'
+                };
+                return labels[test] || test;
+            }
+            
+            function showTestOutput(message) {
+                testOutput.classList.remove('hidden');
+                testOutputContent.textContent = message;
+                setTimeout(() => testOutput.classList.add('hidden'), 5000);
+            }
+            
+            // Test system loading
+            setTimeout(() => {
+                updateTestStatus('loading', typeof BookmarkManager !== 'undefined');
+                
+                // Test button injection
+                setTimeout(() => {
+                    const buttons = document.querySelectorAll('.bookmark-btn');
+                    updateTestStatus('injection', buttons.length > 0);
+                    console.log(`Found ${buttons.length} bookmark buttons`);
+                }, 1000);
+                
+                // Test modal functionality
+                setTimeout(() => {
+                    updateTestStatus('modal', typeof window.bookmarksModal !== 'undefined');
+                }, 1500);
+                
+                // Test storage
+                setTimeout(() => {
+                    try {
+                        localStorage.setItem('test-bookmark', 'test');
+                        const retrieved = localStorage.getItem('test-bookmark');
+                        localStorage.removeItem('test-bookmark');
+                        updateTestStatus('storage', retrieved === 'test');
+                    } catch (error) {
+                        updateTestStatus('storage', false);
+                    }
+                }, 2000);
+                
+            }, 2000);
+            
+            // Interactive test buttons
+            document.getElementById('open-bookmarks-btn').addEventListener('click', () => {
+                if (window.bookmarksModal) {
+                    window.bookmarksModal.show();
+                } else {
+                    alert('Bookmarks modal not yet loaded. Please wait a moment and try again.');
+                }
+            });
+            
+            document.getElementById('test-bookmark-add').addEventListener('click', () => {
+                if (window.bookmarkManager) {
+                    const testBookmark = {
+                        title: 'Test Bookmark - ' + new Date().toLocaleTimeString(),
+                        description: 'This is a test bookmark created for testing purposes.',
+                        type: 'lesson',
+                        category: 'Testing',
+                        url: window.location.href + '#test',
+                        tags: ['test', 'demo']
+                    };
+                    
+                    const success = window.bookmarkManager.addBookmark(testBookmark);
+                    showTestOutput(`Test bookmark ${success ? 'added' : 'failed to add'}`);
+                } else {
+                    showTestOutput('BookmarkManager not available');
+                }
+            });
+            
+            document.getElementById('test-bookmark-clear').addEventListener('click', () => {
+                if (window.bookmarkManager) {
+                    const count = window.bookmarkManager.bookmarks.length;
+                    if (count > 0) {
+                        if (confirm(`Clear all ${count} bookmarks?`)) {
+                            window.bookmarkManager.clear();
+                            showTestOutput('All bookmarks cleared');
+                        }
+                    } else {
+                        showTestOutput('No bookmarks to clear');
+                    }
+                } else {
+                    showTestOutput('BookmarkManager not available');
+                }
+            });
+            
+            document.getElementById('test-export').addEventListener('click', () => {
+                if (window.bookmarkManager) {
+                    window.bookmarkManager.exportBookmarks();
+                    showTestOutput('Bookmarks exported');
+                } else {
+                    showTestOutput('BookmarkManager not available');
+                }
+            });
+            
+            document.getElementById('test-stats').addEventListener('click', () => {
+                if (window.bookmarkManager) {
+                    const stats = window.bookmarkManager.getStats();
+                    showTestOutput(JSON.stringify(stats, null, 2));
+                } else {
+                    showTestOutput('BookmarkManager not available');
+                }
+            });
+            
+            console.log('🧪 Bookmark system test initialized');
+        });
+    </script>
+</body>
+</html>

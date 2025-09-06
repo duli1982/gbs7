@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Integration Demo - Daily Tips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="shared/hub-button.css">
+    <link rel="stylesheet" href="shared/daily-tips-styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        .google-sans {
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .hub-card {
+            border: 1px solid #dadce0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .hub-card h3 {
+            color: #1967d2;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            font-size: 16px;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            pointer-events: none;
+        }
+
+        .comparison-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .before,
+        .after {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .before h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .after h3 {
+            color: #16a34a;
+            margin-bottom: 1rem;
+        }
+
+        .mock-tip-old {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .mock-content {
+            background: #f3f4f6;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #6b7280;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <a href="index.html" class="hub-button">Back To Hub</a>
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+
+        <header class="text-center mb-12">
+            <h1 class="google-sans text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Hub Integration Demo
+            </h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                See how the daily tips system now integrates seamlessly with the main hub page without interfering with
+                content.
+            </p>
+        </header>
+
+        <!-- Comparison Section -->
+        <div class="comparison-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4 text-center">Before vs After</h2>
+
+            <div class="before-after">
+                <div class="before">
+                    <h3 class="font-bold">❌ Before: Intrusive Overlay</h3>
+                    <p class="text-sm text-gray-600 mb-4">The tip appeared as a large sticky overlay that covered
+                        content and interfered with navigation.</p>
+
+                    <div class="mock-tip-old">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span style="font-size: 2rem;">💡</span>
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.25rem;">Today's 5-Minute Tip</h3>
+                                    <span
+                                        style="background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">GENERAL</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button
+                                    style="background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%;">‹</button>
+                                <button
+                                    style="background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%;">›</button>
+                                <button
+                                    style="background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%;">×</button>
+                            </div>
+                        </div>
+                        <p style="margin-bottom: 1rem; opacity: 0.95;">Establish one new AI habit that will compound
+                            over time.</p>
+                        <div
+                            style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">⚡ Quick Action Steps:</h4>
+                            <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem;">
+                                <li style="margin-bottom: 0.5rem;">Choose one daily task you do manually</li>
+                                <li style="margin-bottom: 0.5rem;">Find or create an AI solution for it</li>
+                                <li>Use the AI solution for this task today</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="mock-content">
+                        Content hidden behind the overlay...
+                    </div>
+                </div>
+
+                <div class="after">
+                    <h3 class="font-bold">✅ After: Integrated Banner</h3>
+                    <p class="text-sm text-gray-600 mb-4">The tip now appears as a compact, integrated banner that
+                        doesn't interfere with the main content.</p>
+
+                    <!-- Mock integrated tip -->
+                    <div class="hub-tip-banner" style="margin: 1rem 0;">
+                        <div class="tip-content-compact">
+                            <div class="tip-left">
+                                <div class="tip-icon-small">💡</div>
+                                <div class="tip-text">
+                                    <div class="tip-title-small">Today's Quick Win</div>
+                                    <div class="tip-description-small">Establish one new AI habit that will compound
+                                        over time...</div>
+                                </div>
+                            </div>
+                            <div class="tip-right">
+                                <button class="tip-expand-btn">View Tip</button>
+                                <button class="tip-dismiss-btn">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: white; padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid #e5e7eb;">
+                        <h4 style="color: #1967d2; margin-bottom: 0.5rem;">Main Content Visible</h4>
+                        <p style="color: #6b7280; font-size: 0.9rem;">All hub content remains easily accessible and the
+                            tip doesn't interfere with navigation or reading.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Demo Section -->
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4 text-center">Live Demo</h2>
+            <p class="text-center text-gray-600 mb-6">Here's how it looks integrated into the actual hub layout:</p>
+
+            <!-- Mock hub header -->
+            <header class="text-center mb-8">
+                <h1 class="google-sans text-3xl font-bold text-gray-900">Randstad GBS Learning Hub</h1>
+                <p class="mt-2 text-gray-600">A central portal for our AI training programs, sourcing tools, and
+                    interactive workshops.</p>
+            </header>
+
+            <!-- Mock search bar -->
+            <div class="search-container mb-8">
+                <div class="relative">
+                    <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input"
+                        placeholder="Search across all modules, content, and resources..." readonly>
+                </div>
+            </div>
+
+            <!-- Integrated daily tip (this is where it appears now) -->
+            <div class="hub-tip-banner" style="margin-bottom: 2rem;">
+                <div class="tip-content-compact">
+                    <div class="tip-left">
+                        <div class="tip-icon-small">💡</div>
+                        <div class="tip-text">
+                            <div class="tip-title-small">Today's Quick Win</div>
+                            <div class="tip-description-small">Spend 5 minutes exploring a new section of the Learning
+                                Hub...</div>
+                        </div>
+                    </div>
+                    <div class="tip-right">
+                        <button class="tip-expand-btn" onclick="toggleDemo(this)">View Tip</button>
+                        <button class="tip-dismiss-btn" onclick="dismissDemo(this)">×</button>
+                    </div>
+                </div>
+
+                <div class="tip-expanded-content" style="display: none;" id="demo-expanded">
+                    <div class="tip-description">Spend 5 minutes exploring a new section of the Learning Hub to discover
+                        new tools and techniques.</div>
+                    <div class="action-steps-compact">
+                        <h4>Quick Steps:</h4>
+                        <ol>
+                            <li>Pick a module you haven't visited recently</li>
+                            <li>Browse through 2-3 pieces of content</li>
+                            <li>Bookmark one item that interests you</li>
+                            <li>Try one quick tip or technique</li>
+                            <li>Share your discovery with a colleague</li>
+                        </ol>
+                    </div>
+                    <div class="tip-footer-compact">
+                        <button class="tip-mark-complete">Complete</button>
+                        <button class="tip-save">Save</button>
+                        <div class="tip-streak">
+                            <span class="streak-icon">🔥</span>
+                            <span class="streak-count">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mock module grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="hub-card bg-white p-6 rounded-xl">
+                    <h3 class="google-sans text-xl font-bold mb-2">RPO AI Acceleration Program</h3>
+                    <p class="text-gray-600 text-sm">The complete, multi-phase training curriculum for all RPO team
+                        members.</p>
+                </div>
+                <div class="hub-card bg-white p-6 rounded-xl">
+                    <h3 class="google-sans text-xl font-bold mb-2">Guide for GBS Leaders</h3>
+                    <p class="text-gray-600 text-sm">An interactive training for GBS leaders, complete with prompt
+                        libraries.</p>
+                </div>
+                <div class="hub-card bg-white p-6 rounded-xl">
+                    <h3 class="google-sans text-xl font-bold mb-2">Daily Sourcing Focus</h3>
+                    <p class="text-gray-600 text-sm">A daily micro-coaching tool with actionable focus cards.</p>
+                </div>
+                <div class="hub-card bg-white p-6 rounded-xl">
+                    <h3 class="google-sans text-xl font-bold mb-2">GBS AI Prompts Library</h3>
+                    <p class="text-gray-600 text-sm">A comprehensive and searchable library of expert prompts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Improvements -->
+        <div
+            style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+            <h2 class="google-sans text-2xl font-bold text-green-900 mb-4">Key Improvements</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-green-800 mb-2">🎯 Better Integration</h3>
+                    <ul class="text-green-700 text-sm space-y-1">
+                        <li>• Compact banner design that fits naturally</li>
+                        <li>• Positioned between search and modules</li>
+                        <li>• Doesn't cover or interfere with content</li>
+                        <li>• Expandable for full details when needed</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-green-800 mb-2">📱 Responsive Design</h3>
+                    <ul class="text-green-700 text-sm space-y-1">
+                        <li>• Mobile-optimized layout</li>
+                        <li>• Touch-friendly buttons</li>
+                        <li>• Collapsible on small screens</li>
+                        <li>• Maintains usability across devices</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-green-800 mb-2">⚡ Smart Context</h3>
+                    <ul class="text-green-700 text-sm space-y-1">
+                        <li>• Different designs for hub vs module pages</li>
+                        <li>• Hub shows general learning tips</li>
+                        <li>• Modules show specific skill tips</li>
+                        <li>• Contextually relevant content</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-green-800 mb-2">🔧 Easy Dismissal</h3>
+                    <ul class="text-green-700 text-sm space-y-1">
+                        <li>• One-click dismiss option</li>
+                        <li>• Remembers dismissal preference</li>
+                        <li>• Doesn't reappear until next day</li>
+                        <li>• User controls their experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDemo(button) {
+            const expanded = document.getElementById('demo-expanded');
+            const isExpanded = expanded.style.display !== 'none';
+
+            if (isExpanded) {
+                expanded.style.display = 'none';
+                button.textContent = 'View Tip';
+            } else {
+                expanded.style.display = 'block';
+                button.textContent = 'Hide Tip';
+            }
+        }
+
+        function dismissDemo(button) {
+            const banner = button.closest('.hub-tip-banner');
+            banner.style.display = 'none';
+
+            // Show a brief message
+            const message = document.createElement('div');
+            message.style.cssText = 'background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 1rem; margin-bottom: 2rem; text-align: center; color: #166534;';
+            message.textContent = '✓ Daily tip dismissed. It will return tomorrow with new content.';
+            banner.parentNode.insertBefore(message, banner.nextSibling);
+
+            setTimeout(() => {
+                message.remove();
+            }, 3000);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Tour Demo - Randstad GBS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="shared/hub-button.css">
+    <link rel="stylesheet" href="shared/onboarding-tour.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .google-sans { font-family: 'Google Sans', sans-serif; }
+        body { font-family: 'Roboto', sans-serif; }
+        
+        .demo-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            color: #4A90E2;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .button {
+            background: #4A90E2;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+        
+        .button:hover {
+            background: #357ABD;
+        }
+        
+        .button.secondary {
+            background: #6b7280;
+        }
+        
+        .button.secondary:hover {
+            background: #4b5563;
+        }
+        
+        .mock-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .mock-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            font-size: 16px;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <a href="index.html" class="hub-button">Back To Hub</a>
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="google-sans text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Onboarding Tour Demo
+            </h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Experience the interactive guided tour that welcomes new users to the Randstad GBS Learning Hub.
+            </p>
+        </header>
+
+        <!-- Tour Controls -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Tour Controls</h2>
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button class="button" onclick="startOnboardingTour()">Start Tour</button>
+                <button class="button secondary" onclick="resetTour()">Reset Tour Data</button>
+                <button class="button secondary" onclick="showWelcomeBanner()">Show Welcome Banner</button>
+                <button class="button secondary" onclick="checkTourStatus()">Check Status</button>
+            </div>
+            
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                <h3 class="font-semibold text-blue-900 mb-2">How to Test:</h3>
+                <ol class="list-decimal list-inside space-y-1 text-blue-800">
+                    <li>Click "Reset Tour Data" to simulate a first-time visitor</li>
+                    <li>Click "Start Tour" to begin the guided experience</li>
+                    <li>Use arrow keys, space bar, or buttons to navigate</li>
+                    <li>Press Escape to skip the tour at any time</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Mock Elements for Tour -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Mock Learning Hub Elements</h2>
+            <p class="text-gray-600 mb-4">These elements simulate the main hub page for tour demonstration:</p>
+            
+            <!-- Mock Search Bar -->
+            <div class="search-container">
+                <div class="relative">
+                    <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search across all modules, content, and resources..." readonly>
+                </div>
+            </div>
+            
+            <!-- Mock Daily Tip -->
+            <div id="daily-tip-container" style="max-width: 600px; margin: 2rem auto; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border: 1px solid #cbd5e1; border-radius: 12px; padding: 1rem 1.5rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-size: 1.5rem;">💡</span>
+                        <div>
+                            <div style="font-size: 0.9rem; font-weight: 600; color: #4A90E2; margin-bottom: 0.25rem;">Today's Quick Win</div>
+                            <div style="font-size: 0.85rem; color: #64748b;">Establish one new AI habit that will compound over time...</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button style="background: #4A90E2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">View Tip</button>
+                        <button style="background: none; border: none; color: #94a3b8; font-size: 1.25rem;">×</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mock Module Grid -->
+            <div class="mock-elements" id="modules-grid">
+                <div class="mock-card">
+                    <h3 class="google-sans text-lg font-bold text-blue-600 mb-2">RPO AI Acceleration Program</h3>
+                    <p class="text-gray-600 text-sm">Complete training curriculum for RPO team members.</p>
+                </div>
+                <div class="mock-card">
+                    <h3 class="google-sans text-lg font-bold text-blue-600 mb-2">Guide for GBS Leaders</h3>
+                    <p class="text-gray-600 text-sm">Interactive training with prompt libraries and case studies.</p>
+                </div>
+                <div class="mock-card">
+                    <h3 class="google-sans text-lg font-bold text-blue-600 mb-2">Daily Sourcing Focus</h3>
+                    <p class="text-gray-600 text-sm">Micro-coaching tool with actionable focus cards.</p>
+                </div>
+                <div class="mock-card">
+                    <h3 class="google-sans text-lg font-bold text-blue-600 mb-2">GBS AI Prompts Library</h3>
+                    <p class="text-gray-600 text-sm">Comprehensive library of expert prompts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tour Features -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Tour Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎯 Smart Welcome Banner</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        First-time visitors see an attractive welcome banner that invites them to take the tour.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Auto-appears after 1.5 seconds, dismissible, remembers preference
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📍 Interactive Spotlights</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Key elements are highlighted with animated spotlights and helpful tooltips.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Smooth scrolling, responsive positioning, visual effects
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⌨️ Keyboard Navigation</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Full keyboard support with arrow keys, space bar, and escape key.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Ctrl+T to restart tour, accessible design
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 Progress Tracking</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Visual progress bar and step counter keep users oriented.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Analytics tracking, completion rates, user behavior
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📱 Mobile Responsive</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Fully responsive design that works perfectly on all devices.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Touch-friendly, adaptive layouts, optimized for mobile
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎨 Beautiful Animations</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Smooth animations and transitions create an engaging experience.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Respects reduced motion preferences, performance optimized
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Display -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Tour Status</h2>
+            <div id="tour-status" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 0.9rem;">
+                Loading status...
+            </div>
+        </div>
+
+    </div>
+
+    <script src="shared/onboarding-tour.js" defer></script>
+    
+    <script>
+        function resetTour() {
+            localStorage.removeItem('onboarding-tour-completed');
+            localStorage.removeItem('onboarding-welcome-shown');
+            localStorage.removeItem('onboarding-tour-completed-date');
+            localStorage.removeItem('onboarding-analytics');
+            alert('Tour data reset! Refresh the page to simulate a first-time visitor experience.');
+            checkTourStatus();
+        }
+        
+        function showWelcomeBanner() {
+            if (window.onboardingTour) {
+                // Remove existing banner first
+                const existing = document.getElementById('welcome-banner');
+                if (existing) existing.remove();
+                
+                // Reset welcome shown flag
+                localStorage.removeItem('onboarding-welcome-shown');
+                
+                // Show banner
+                window.onboardingTour.showWelcomeBanner();
+            }
+        }
+        
+        function checkTourStatus() {
+            const status = {
+                'Tour Completed': localStorage.getItem('onboarding-tour-completed') || 'No',
+                'Welcome Shown': localStorage.getItem('onboarding-welcome-shown') || 'No',
+                'Completion Date': localStorage.getItem('onboarding-tour-completed-date') || 'Never',
+                'Analytics Events': JSON.parse(localStorage.getItem('onboarding-analytics') || '[]').length,
+                'Tour Available': window.onboardingTour ? 'Yes' : 'No'
+            };
+            
+            document.getElementById('tour-status').innerHTML = Object.entries(status)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('\n');
+        }
+        
+        // Initial status check
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(checkTourStatus, 1000);
+        });
+    </script>
+
+</body>
+</html>

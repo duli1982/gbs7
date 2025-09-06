@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Tips Demo - Randstad GBS Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="shared/hub-button.css">
+    <link rel="stylesheet" href="shared/daily-tips-styles.css">
+    <link rel="stylesheet" href="shared/saved-tips-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .google-sans { font-family: 'Google Sans', sans-serif; }
+        body { font-family: 'Roboto', sans-serif; }
+        
+        .demo-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            color: #4A90E2;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .implementation-steps {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-number {
+            background: #4A90E2;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f0fdf4;
+            border-radius: 6px;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .benefit-icon {
+            color: #16a34a;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <a href="index.html" class="hub-button">Back To Hub</a>
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="google-sans text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                5-Minute Daily Tips System
+            </h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Expanding the Daily Focus concept across all modules to create bite-sized, actionable learning moments that keep users engaged daily.
+            </p>
+        </header>
+
+        <!-- Live Demo Section -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Live Demo</h2>
+            <p class="text-gray-600 mb-4">
+                The daily tip system is now active on this page! You should see a tip card above this content. 
+                The system automatically detects which module you're in and shows relevant tips.
+            </p>
+            
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-blue-600">ℹ️</span>
+                    <strong class="text-blue-900">Try the Demo:</strong>
+                </div>
+                <ul class="text-blue-800 space-y-1 ml-6">
+                    <li>• Navigate between previous/next tips using the arrow buttons</li>
+                    <li>• Mark a tip as complete to build your streak</li>
+                    <li>• Save tips for later implementation</li>
+                    <li>• View your saved tips collection</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Concept Overview -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Concept Overview</h2>
+            
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🎯</span>
+                    <span><strong>Habit Formation:</strong> Daily engagement builds routine</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⚡</span>
+                    <span><strong>Reduced Overwhelm:</strong> Small, digestible chunks</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">💡</span>
+                    <span><strong>Immediate Value:</strong> Each tip provides instant benefit</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📈</span>
+                    <span><strong>Progressive Learning:</strong> Tips build on each other</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🧠</span>
+                    <span><strong>Higher Retention:</strong> Regular reinforcement</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔥</span>
+                    <span><strong>Streak Motivation:</strong> Gamified engagement</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module-Specific Tips -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Module-Specific Tips</h2>
+            <p class="text-gray-600 mb-6">
+                Each module has its own curated collection of 5-minute tips that align with the learning objectives:
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎓 RPO Training</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        C.R.E.A.T.E. framework practice, Boolean string generation, data analysis speed runs, automation setups
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Example: "Master the C.R.E.A.T.E. Framework in 5 minutes"
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>👥 Leadership</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Team readiness checks, ROI calculations, resistance handling practice, mentoring techniques
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Example: "Calculate AI ROI for your department in 4 minutes"
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📝 Prompt Library</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Prompt optimization, library expansion, cross-department sharing, testing techniques
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Example: "Optimize an existing prompt for 50% better results"
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔍 Sourcing</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Outreach improvements, talent pool audits, market intelligence, Boolean refinement
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Example: "Refresh your outreach template using AI"
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 Success Stories</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Success documentation, story implementation, impact measurement, sharing techniques
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Example: "Document your AI win to inspire others"
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📚 Knowledge</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Gap identification, best practice sharing, learning acceleration, knowledge transfer
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        Example: "Fill one AI knowledge gap in 5 minutes"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Guide -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Implementation Guide</h2>
+            
+            <div class="implementation-steps">
+                <h3 class="font-semibold text-gray-900 mb-4">How to Add to Any Module:</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Include the CSS and JS files:</strong>
+                        <div class="code-example">
+&lt;link rel="stylesheet" href="../shared/daily-tips-styles.css"&gt;
+&lt;link rel="stylesheet" href="../shared/saved-tips-styles.css"&gt;
+&lt;script src="../shared/daily-tips-system.js" defer&gt;&lt;/script&gt;
+&lt;script src="../shared/saved-tips-manager.js" defer&gt;&lt;/script&gt;</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>The system auto-detects the module</strong> based on the URL path and shows relevant tips automatically.
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Customize tips for your module</strong> by adding them to the <code>getAllTips()</code> method in the JavaScript file.
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Tips automatically cycle</strong> based on the day of the year, ensuring users see different content daily.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Overview -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Key Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔄 Smart Cycling</h3>
+                    <p class="text-gray-600 text-sm">
+                        Tips automatically cycle based on the day of year, ensuring fresh content daily while allowing users to navigate to previous/next tips.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📱 Mobile Optimized</h3>
+                    <p class="text-gray-600 text-sm">
+                        Fully responsive design that works perfectly on mobile devices for learning on-the-go.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>💾 Save for Later</h3>
+                    <p class="text-gray-600 text-sm">
+                        Users can save tips to implement later, with a dedicated saved tips manager and implementation tracker.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔥 Streak Tracking</h3>
+                    <p class="text-gray-600 text-sm">
+                        Gamified experience with streak counters that motivate daily engagement and completion.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⏱️ Time Estimates</h3>
+                    <p class="text-gray-600 text-sm">
+                        Each tip includes realistic time estimates (typically 4-6 minutes) with built-in timer functionality.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 Progress Tracking</h3>
+                    <p class="text-gray-600 text-sm">
+                        Local storage tracks completion, saves progress, and provides analytics on learning habits.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Tip Structure -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Sample Tip Structure</h2>
+            <p class="text-gray-600 mb-4">
+                Each tip follows a consistent structure for maximum effectiveness:
+            </p>
+            
+            <div class="code-example">
+{
+  title: "Master the C.R.E.A.T.E. Framework",
+  description: "Practice building one perfect prompt using Character, Request, Examples, Additions, Type, and Extras.",
+  steps: [
+    "Pick a real task you need to do today",
+    "Define your Character (role for AI to play)",
+    "Write a clear Request (what you want)",
+    "Add one Example of good output",
+    "Specify the Type of response you need",
+    "Test it and refine based on results"
+  ],
+  estimatedTime: 5
+}</div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="demo-section">
+            <h2 class="google-sans text-2xl font-bold text-gray-900 mb-4">Next Steps</h2>
+            
+            <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                <h3 class="font-semibold text-green-900 mb-3">Ready to Implement:</h3>
+                <ul class="text-green-800 space-y-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 mt-1">✅</span>
+                        <span>The system is fully functional and ready to deploy</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 mt-1">✅</span>
+                        <span>Add the CSS/JS files to any module to enable daily tips</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 mt-1">✅</span>
+                        <span>Customize tip content for each module's specific learning goals</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 mt-1">✅</span>
+                        <span>Monitor engagement through built-in analytics</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script src="shared/scripts/footer.js" defer></script>
+    <script src="shared/daily-tips-system.js" defer></script>
+    <script src="shared/saved-tips-manager.js" defer></script>
+
+</body>
+</html>
